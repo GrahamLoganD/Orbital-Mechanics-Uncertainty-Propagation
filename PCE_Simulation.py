@@ -15,8 +15,10 @@ def phi(t, x0, t0):
         t0
             float, initial time in seconds
     '''
+    
     mu = 398600 # Gravitational constant in km^3/s^2
-    r = lambda x: math.sqrt((x[0] ** 2) + (x[1] ** 2) + (x[2] ** 2))
+
+    r = lambda x: math.sqrt((x[0] ** 2) + (x[1] ** 2) + (x[2] ** 2)) # Function for satellite's distance
 
     sol = scipy.integrate.odeint(func=lambda t, y: numpy.array([y[3], y[4], y[5], (-mu * y[0]) / (r(y) ** 3), (-mu * y[1]) / (r(y) ** 3), (-mu * y[2]) / (r(y) ** 3)]), t=[t0, t], y0=x0, tfirst=True)
 
@@ -48,7 +50,7 @@ def PCE_Sim(p, b, t0, t, m0, p0):
     P = int(math.factorial(p + n) / (math.factorial(p) * math.factorial(n)) - 1) # P + 1 is the width of the hermitian matrix
     N2 = int(math.factorial(p + n) / (math.factorial(p) * math.factorial(n)) + b) # Number of PC sampled input uncertainties
 
-    xi = numpy.array(scipy.stats.multivariate_normal.rvs(size=(N2, 6))) # Sampled input uncertainties
+    xi = numpy.array(scipy.stats.multivariate_normal.rvs(size=(N2, n))) # Sampled input uncertainties
 
     # Solve for output uncertanties
     Sx = numpy.matrix(scipy.linalg.cholesky(p0)) # Cholesky decomposition of the initial covariance matrix
