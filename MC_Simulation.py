@@ -9,11 +9,11 @@ import matplotlib.pyplot
 
 def phi(t, x0, t0):
     '''
-        Solves the differential equation for the the satellite's motion.
+        Solves the differential equation for the satellite's motion.
         t
             float, final time in seconds
         x0
-            list of floats, initial state vector [x0 in km, y0 in km , z0 in km, xdot0 in km/s, ydot0 in km/s, zdot0 in km/s]
+            list of floats, initial state vector [x in km, y in km , z in km, xdot in km/s, ydot in km/s, zdot in km/s]
         t0
             float, initial time in seconds
     '''

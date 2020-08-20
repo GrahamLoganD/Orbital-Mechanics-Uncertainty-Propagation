@@ -7,15 +7,15 @@ import scipy.stats
 
 def phi(t, x0, t0):
     '''
-        Solves the differential equation for the the satellite's motion.
+        Solves the differential equation for the satellite's motion.
         t
             float, final time in seconds
         x0
-            list of floats, initial state vector [x0 in km, y0 in km , z0 in km, xdot0 in km/s, ydot0 in km/s, zdot0 in km/s]
+            list of floats, initial state vector [x in km, y in km , z in km, xdot in km/s, ydot in km/s, zdot in km/s]
         t0
             float, initial time in seconds
     '''
-    
+
     mu = 398600 # Gravitational constant in km^3/s^2
 
     r = lambda x: math.sqrt((x[0] ** 2) + (x[1] ** 2) + (x[2] ** 2)) # Function for satellite's distance
@@ -28,9 +28,10 @@ def PCE_Sim(p, b, t0, t, m0, p0):
     '''
     Polynomial Chaos Expansion Propagation of Satellite Uncertainty
 
-    This program propagates the uncertainty distribution of a 
-    satellite in Earth orbit. A polynomial chaos expansion simulation is used
-    based on the given initial Gaussian distribution.
+    This program propagates the uncertainty distribution of a satellite in 
+    Earth orbit. A Polynomial Chaos Expansion simulation is used based on the 
+    given initial Gaussian distribution. The method is non-intrusive with 
+    least-squares regression.
     p
         int, maximum order of the polynomial basis
     b
@@ -73,7 +74,7 @@ def PCE_Sim(p, b, t0, t, m0, p0):
                                 H[i, position] = scipy.special.eval_hermite(k1, xi[i, 0]) * scipy.special.eval_hermite(k2, xi[i, 1]) * scipy.special.eval_hermite(k3, xi[i, 2]) * scipy.special.eval_hermite(k4, xi[i, 3]) * scipy.special.eval_hermite(k5, xi[i, 4]) * scipy.special.eval_hermite(k6, xi[i, 5])
                                 position = position + 1
 
-    C = numpy.linalg.inv(H.T * H) * H.T * Y # PC coefficients
+    C = numpy.linalg.inv(H.T * H) * H.T * Y # Least-squares calculation of PC coefficients
 
     mean = numpy.ravel(C[0, :]) # Mean of final distribution
     return mean
