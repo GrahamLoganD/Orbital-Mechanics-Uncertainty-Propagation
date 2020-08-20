@@ -7,6 +7,7 @@ import pandas
 import seaborn
 import matplotlib.pyplot
 
+
 def phi(t, x0, t0):
     '''
         Solves the differential equation for the satellite's motion.
@@ -25,6 +26,7 @@ def phi(t, x0, t0):
     sol = scipy.integrate.odeint(func=lambda t, y: numpy.array([y[3], y[4], y[5], (-mu * y[0]) / (r(y) ** 3), (-mu * y[1]) / (r(y) ** 3), (-mu * y[2]) / (r(y) ** 3)]), t=[t0, t], y0=x0, tfirst=True)
 
     return sol[-1, :]
+
 
 def MC_Sim(N, t0, t, m0, p0, plot):
     '''
@@ -69,6 +71,7 @@ def MC_Sim(N, t0, t, m0, p0, plot):
         matplotlib.pyplot.show()
 
     return m
+
 
 if __name__ == "__main__":
     start = time.time()
