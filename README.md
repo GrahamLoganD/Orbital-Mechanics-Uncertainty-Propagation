@@ -20,3 +20,8 @@ These programs propagate the uncertainty in a satellite's state vector (i.e. its
 - pandas
 - seaborn
 - matplotlib
+
+## References
+D. Xiu and G. E. Karniadakis, “Modeling uncertainty in flow simulations via Generalized Polynomial Chaos,” Journal of Computational Physics, vol. 187, no. 1, pp. 137–167, 2003. 
+D. Xiu and G. E. Karniadakis, “The wiener--askey polynomial chaos for stochastic differential equations,” SIAM Journal on Scientific Computing, vol. 24, no. 2, pp. 619–644, 2002. 
+Y.-zhong Luo and Z. Yang, “A review of uncertainty propagation in Orbital Mechanics,” Progress in Aerospace Sciences, vol. 89, pp. 23–39, 2017. 
